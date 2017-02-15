@@ -261,8 +261,8 @@ Global
 		$1.FileWidth = 120
 		$1.inheritsSet = null
 		$1.inheritsScope = text/plain
-		$1.scope = text/x-csharp
-		$1.EolMarker = Unix
+		$1.scope = application/xaml+xml
+		$1.TabsToSpaces = False
 		$0.XmlFormattingPolicy = $2
 		$2.inheritsSet = Mono
 		$2.scope = application/xml

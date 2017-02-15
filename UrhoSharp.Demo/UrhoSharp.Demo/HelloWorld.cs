@@ -1,38 +1,48 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Urho;
 using Urho.Actions;
 using Urho.Gui;
 
 namespace UrhoSharp.Demo
 {
-    public class HelloWorld : Application
-    {
-        //public HelloWorld() { }
-        public HelloWorld(ApplicationOptions options) : base(options) { }
+	public class HelloWorld : Application
+	{
+		int counter = 0;
 
-        protected override void Start()
-        {
-            base.Start();
+		//public HelloWorld() { }
+		public HelloWorld(ApplicationOptions options) : base(options) { }
 
-            CreateText();
-        }
+		protected override void Start()
+		{
+			base.Start();
 
-        private void CreateText()
-        {
-            // Create Text Element
-            var text = new Text()
-            {
-                Value = "Hello World!",
-                HorizontalAlignment = HorizontalAlignment.Center,
-                VerticalAlignment = VerticalAlignment.Center
-            };
+			CreateText();
+		}
 
-            text.SetColor(Color.Cyan);
-            text.SetFont(font: ResourceCache.GetFont("Fonts/Anonymous Pro.ttf"), size: 30);
-            // Add to UI Root
-            UI.Root.AddChild(text);
+		private void CreateText()
+		{
+			counter++;
 
-        }
+			// Create Text Element
+			var text = new Text()
+			{
+				Value = "Hello World!" + counter,
+				Position = new IntVector2(100, 100 + counter * 100),
+				//HorizontalAlignment = HorizontalAlignment.Center,
+				//VerticalAlignment = VerticalAlignment.Center
+			};
 
-    }
+			text.SetColor(Color.Cyan);
+			text.SetFont(font: ResourceCache.GetFont("Fonts/Anonymous Pro.ttf"), size: 30);
+			// Add to UI Root
+			UI.Root.AddChild(text);
+
+		}
+
+		internal void AddSampleNodes()
+		{
+			CreateText();
+		}
+	}
 }

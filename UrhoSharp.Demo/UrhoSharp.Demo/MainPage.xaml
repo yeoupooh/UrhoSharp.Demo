@@ -4,22 +4,28 @@
 	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
 	xmlns:local="clr-namespace:UrhoSharp.Demo"
 	xmlns:urho="clr-namespace:Urho.Forms;assembly=Urho.Forms"
-	x:Class="UrhoSharp.Demo.MainPage">
+	x:Class="UrhoSharp.Demo.MainPage"
+	DataContext="{Binding MainPageVM, Source={StaticResource ViewModelLocator}}">
 	<StackLayout
 		Spacing="10">
 		<Button
-			Text="Rel Rotate"
-			Clicked="OnRelRotateButtonClicked"
+			Text="Add Sample Nodes"
 			VerticalOptions="Start" />
+		<!--
+			Command="{Binding AddSampleNodesCommand}"
+			Command="{Binding RelRotateCommand}" 
+			Command="{Binding ZoomInCommand}"
+			Command="{Binding ZoomOutCommand}"
+		-->
+		<Button
+			Text="Rel Rotate" />
 		<urho:UrhoSurface
 			x:Name="HelloWorldUrhoSurface"
 			VerticalOptions="FillAndExpand" />
 		<Button
-			Text="Zoom In"
-			Clicked="OnZoomInButtonClicked" />
+			Text="Zoom In" />
 		<Button
 			Text="Zoom Out"
-			Clicked="OnZoomOutButtonClicked"
 			VerticalOptions="End" />
 	</StackLayout>
 </ContentPage>
