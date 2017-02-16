@@ -10,26 +10,35 @@ namespace UrhoSharp.Demo
     public class MainPageViewModel : ViewModelBase, INotifyPropertyChanged
     {
         public ICommand AddSampleNodesCommand { get; set; }
-        public ICommand RelRotateCommand { get; set; }
+        public ICommand RotateSurfaceCommand { get; set; }
+        public ICommand RotateWorldCommand { get; set; }
         public ICommand ZoomInCommand { get; set; }
         public ICommand ZoomOutCommand { get; set; }
 
-        int angle = 0;
+        int surfaceAngle = 0;
+        float worldAngle = 0f;
         double scale = 1f;
         HelloWorld app;
 
         public int Angle
         {
-            get
-            {
-                return angle;
-            }
+            get { return surfaceAngle; }
             set
             {
-                angle = value;
-                NotifyPropertyChanged("Angle");
+                surfaceAngle = value;
+                NotifyPropertyChanged("SurfaceAngle");
             }
         }
+        public float WorldAngle
+        {
+            get { return surfaceAngle; }
+            set
+            {
+                worldAngle = value;
+                NotifyPropertyChanged("WorldAngle");
+            }
+        }
+
 
         public double Scale
         {
@@ -63,16 +72,22 @@ namespace UrhoSharp.Demo
                 Debug.WriteLine("add sample nodes");
                 app?.AddSampleNodes();
             });
-            RelRotateCommand = new Command((obj) =>
+            RotateSurfaceCommand = new Command((obj) =>
             {
-                Debug.WriteLine(string.Format("rel rotate command: {0}", obj));
+                Debug.WriteLine(string.Format("rotate surface command: {0}", obj));
                 Angle += 10;
             });
-            ZoomInCommand = new Command((obj) =>
+            RotateWorldCommand = new Command((obj) =>
             {
-                Scale += 0.1f;
-                Debug.WriteLine("zoom in command");
+                Debug.WriteLine(string.Format("rotate world command: {0}", obj));
+                WorldAngle += 10f;
+                app?.RotateWorld(worldAngle);
             });
+            ZoomInCommand = new Command((obj) =>
+                        {
+                            Scale += 0.1f;
+                            Debug.WriteLine("zoom in command");
+                        });
             ZoomOutCommand = new Command((obj) =>
             {
                 Scale -= 0.1f;

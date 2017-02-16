@@ -13,13 +13,16 @@
 			VerticalOptions="Start"
 			Command="{Binding AddSampleNodesCommand}" />
 		<Button
-			Command="{Binding RelRotateCommand}"
-			Text="Rel Rotate" />
+			Command="{Binding RotateSurfaceCommand}"
+			Text="Rotate Surface" />
+		<Button
+			Command="{Binding RotateWorldCommand}"
+			Text="Rotate World" />
 		<urho:UrhoSurface
 			x:Name="HelloWorldUrhoSurface"
 			VerticalOptions="FillAndExpand"
 			Scale="{Binding Scale}"
-			Rotation="{Binding Angle}" />
+			Rotation="{Binding SurfaceAngle}" />
 		<Button
 			Command="{Binding ZoomInCommand}"
 			Text="Zoom In" />
