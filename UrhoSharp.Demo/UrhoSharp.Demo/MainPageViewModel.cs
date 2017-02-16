@@ -6,45 +6,41 @@ using Xamarin.Forms;
 
 namespace UrhoSharp.Demo
 {
-	public class MainPageViewModel : ViewModelBase, INotifyPropertyChanged
-	{
-		public ICommand AddSampleNodesCommand { get; set; }
-		public ICommand RelRotateCommand { get; set; }
-		public ICommand ZoomInCommand { get; set; }
-		public ICommand ZoomOutCommand { get; set; }
+    public class MainPageViewModel : ViewModelBase, INotifyPropertyChanged
+    {
+        public ICommand AddSampleNodesCommand { get; set; }
+        public ICommand RelRotateCommand { get; set; }
+        public ICommand ZoomInCommand { get; set; }
+        public ICommand ZoomOutCommand { get; set; }
 
-		//ServiceLocator.SetLocatorProvider(i => SimpleIoc.Default);
+        //        if (ViewModelBase.IsInDesignModeStatic)
+        //        {
+        //            SimpleIoc.Default.Register<IDataService, Design.DesignDataService>();
+        //        }
+        //        else
+        //        {
+        //            SimpleIoc.Default.Register<IDataService, DataService>();    
+        //        }
 
-		//        if (ViewModelBase.IsInDesignModeStatic)
-		//        {
-		//            SimpleIoc.Default.Register<IDataService, Design.DesignDataService>();
-		//        }
-		//        else
-		//        {
-		//            SimpleIoc.Default.Register<IDataService, DataService>();    
-		//        }
+        HelloWorld app;
 
-		//SimpleIoc.Default.Register<MainViewModel>();		
+        INotifyPropertyChanged PropertyChanged { get; set; }
 
-		HelloWorld app;
+        public HelloWorld App
+        {
+            get { return app; }
+            internal set
+            {
+                app = value;
+            }
+        }
 
-		INotifyPropertyChanged PropertyChanged { get; set; }
-
-		public HelloWorld App
-		{
-			get { return app; }
-			internal set
-			{
-				app = value;
-			}
-		}
-
-		public MainPageViewModel()
-		{
-			AddSampleNodesCommand = new Command((obj) => app?.AddSampleNodes());
-			RelRotateCommand = new Command((obj) => Debug.WriteLine("rel rotate command"));
-			ZoomInCommand = new Command((obj) => Debug.WriteLine("zoom in command"));
-			ZoomOutCommand = new Command((obj) => Debug.WriteLine("zoom out command"));
-		}
-	}
+        public MainPageViewModel()
+        {
+            AddSampleNodesCommand = new Command((obj) => app?.AddSampleNodes());
+            RelRotateCommand = new Command((obj) => Debug.WriteLine("rel rotate command"));
+            ZoomInCommand = new Command((obj) => Debug.WriteLine("zoom in command"));
+            ZoomOutCommand = new Command((obj) => Debug.WriteLine("zoom out command"));
+        }
+    }
 }

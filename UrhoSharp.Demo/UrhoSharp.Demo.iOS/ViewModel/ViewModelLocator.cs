@@ -1,7 +1,7 @@
 /*
   In App.xaml:
   <Application.Resources>
-      <vm:ViewModelLocator xmlns:vm="clr-namespace:UrhoSharp.Demo"
+      <vm:ViewModelLocator xmlns:vm="clr-namespace:UrhoSharp.Demo.iOS"
                            x:Key="Locator" />
   </Application.Resources>
   
@@ -16,7 +16,7 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
 using Microsoft.Practices.ServiceLocation;
 
-namespace UrhoSharp.Demo.ViewModel
+namespace UrhoSharp.Demo.iOS.ViewModel
 {
     /// <summary>
     /// This class contains static references to all the view models in the

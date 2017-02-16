@@ -3,11 +3,13 @@
 	xmlns="http://xamarin.com/schemas/2014/forms"
 	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
 	xmlns:urho="clr-namespace:Urho.Forms;assembly=Urho.Forms"
-	xmlns:vm="clr-namespace:UrhoSharp.Demo"
 	x:Class="UrhoSharp.Demo.App">
 	<Application.Resources>
 		<!-- Application resource dictionary -->
-		<vm:ViewModelLocator
-			x:Key="ViewModelLocator" />
+		<ResourceDictionary>
+			<vm:ViewModelLocator
+				xmlns:vm="clr-namespace:UrhoSharp.Demo"
+				x:Key="ViewModelLocator" />
+		</ResourceDictionary>
 	</Application.Resources>
 </Application>
