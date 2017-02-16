@@ -20,7 +20,7 @@ namespace UrhoSharp.Demo
         double scale = 1f;
         HelloWorld app;
 
-        public int Angle
+        public int SurfaceAngle
         {
             get { return surfaceAngle; }
             set
@@ -75,7 +75,7 @@ namespace UrhoSharp.Demo
             RotateSurfaceCommand = new Command((obj) =>
             {
                 Debug.WriteLine(string.Format("rotate surface command: {0}", obj));
-                Angle += 10;
+                SurfaceAngle += 10;
             });
             RotateWorldCommand = new Command((obj) =>
             {
