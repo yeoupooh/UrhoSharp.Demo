@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using Urho;
 using Xamarin.Forms;
 
@@ -7,8 +8,6 @@ namespace UrhoSharp.Demo
     public partial class MainPage : ContentPage
     {
         HelloWorld app;
-        //MainPageViewModel ViewModel;
-
         public MainPage()
         {
             InitializeComponent();
@@ -19,21 +18,16 @@ namespace UrhoSharp.Demo
             base.OnAppearing();
 
             app = await HelloWorldUrhoSurface.Show<HelloWorld>(new Urho.ApplicationOptions(assetsFolder: null) { Orientation = ApplicationOptions.OrientationType.LandscapeAndPortrait });
-            //ViewModel.App = app;
+
+            if (BindingContext != null)
+            {
+                if (BindingContext.GetType() == typeof(MainPageViewModel))
+                {
+                    ((MainPageViewModel)BindingContext).App = app;
+                    Debug.WriteLine("app is set");
+                }
+            }
         }
 
-        //public void OnRelRotateButtonClicked(object sender, EventArgs args)
-        //{
-        //	HelloWorldUrhoSurface.RelRotateTo(10f);
-        //}
-        //public void OnZoomInButtonClicked(object sender, EventArgs args)
-        //{
-        //	HelloWorldUrhoSurface.RelScaleTo(0.1f);
-        //}
-
-        //public void OnZoomOutButtonClicked(object sender, EventArgs args)
-        //{
-        //	HelloWorldUrhoSurface.RelScaleTo(-0.1f);
-        //}
     }
 }

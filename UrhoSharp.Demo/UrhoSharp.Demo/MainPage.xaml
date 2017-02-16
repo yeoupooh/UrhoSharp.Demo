@@ -17,7 +17,9 @@
 			Text="Rel Rotate" />
 		<urho:UrhoSurface
 			x:Name="HelloWorldUrhoSurface"
-			VerticalOptions="FillAndExpand" />
+			VerticalOptions="FillAndExpand"
+			Scale="{Binding Scale}"
+			Rotation="{Binding Angle}" />
 		<Button
 			Command="{Binding ZoomInCommand}"
 			Text="Zoom In" />

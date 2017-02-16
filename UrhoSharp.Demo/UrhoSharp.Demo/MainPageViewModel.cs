@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Windows.Input;
 using GalaSoft.MvvmLight;
@@ -13,18 +14,38 @@ namespace UrhoSharp.Demo
         public ICommand ZoomInCommand { get; set; }
         public ICommand ZoomOutCommand { get; set; }
 
-        //        if (ViewModelBase.IsInDesignModeStatic)
-        //        {
-        //            SimpleIoc.Default.Register<IDataService, Design.DesignDataService>();
-        //        }
-        //        else
-        //        {
-        //            SimpleIoc.Default.Register<IDataService, DataService>();    
-        //        }
-
+        int angle = 0;
+        double scale = 1f;
         HelloWorld app;
 
-        INotifyPropertyChanged PropertyChanged { get; set; }
+        public int Angle
+        {
+            get
+            {
+                return angle;
+            }
+            set
+            {
+                angle = value;
+                NotifyPropertyChanged("Angle");
+            }
+        }
+
+        public double Scale
+        {
+            get
+            {
+                return scale;
+
+            }
+            set
+            {
+                scale = value;
+                NotifyPropertyChanged("Scale");
+            }
+        }
+
+        public virtual new event PropertyChangedEventHandler PropertyChanged;
 
         public HelloWorld App
         {
@@ -37,10 +58,35 @@ namespace UrhoSharp.Demo
 
         public MainPageViewModel()
         {
-            AddSampleNodesCommand = new Command((obj) => app?.AddSampleNodes());
-            RelRotateCommand = new Command((obj) => Debug.WriteLine("rel rotate command"));
-            ZoomInCommand = new Command((obj) => Debug.WriteLine("zoom in command"));
-            ZoomOutCommand = new Command((obj) => Debug.WriteLine("zoom out command"));
+            AddSampleNodesCommand = new Command((obj) =>
+            {
+                Debug.WriteLine("add sample nodes");
+                app?.AddSampleNodes();
+            });
+            RelRotateCommand = new Command((obj) =>
+            {
+                Debug.WriteLine(string.Format("rel rotate command: {0}", obj));
+                Angle += 10;
+            });
+            ZoomInCommand = new Command((obj) =>
+            {
+                Scale += 0.1f;
+                Debug.WriteLine("zoom in command");
+            });
+            ZoomOutCommand = new Command((obj) =>
+            {
+                Scale -= 0.1f;
+                Debug.WriteLine("zoom out command");
+            });
+        }
+
+        void NotifyPropertyChanged(string propertyName)
+        {
+            var changed = PropertyChanged;
+            if (changed != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
         }
     }
 }
